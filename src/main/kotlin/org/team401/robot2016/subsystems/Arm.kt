@@ -1,6 +1,6 @@
 package org.team401.robot2016.subsystems
 
-import edu.wpi.first.wpilibj.Jaguar
+import edu.wpi.first.wpilibj.Spark
 import org.snakeskin.dsl.*
 import org.snakeskin.event.Events
 import org.team401.robot2016.Constants
@@ -26,7 +26,7 @@ object ArmStates {
 }
 
 val ArmSubsystem: Subsystem = buildSubsystem {
-    val motor = Jaguar(Constants.MotorControllers.ARM)
+    val motor = Spark(Constants.MotorControllers.ARM)
 
     val armMachine = stateMachine(ARM_MACHINE) {
         state (ArmStates.MOVE) {
