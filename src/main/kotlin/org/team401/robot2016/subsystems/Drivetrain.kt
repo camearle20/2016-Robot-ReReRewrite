@@ -23,6 +23,7 @@ import org.team401.robot2016.Gamepad
 
 const val DRIVE_MACHINE = "drive"
 object DriveStates {
+    const val LOCKOUT = "lockout"
     const val DRIVE = "openLoop"
     const val DRIVE_REDUCED = "openLoopKiddie"
 }

@@ -18,6 +18,22 @@ import org.team401.robot2016.subsystems.*
  */
 
 val Gamepad = HumanControls.f310(0) {
+    invertAxis(Axes.RIGHT_X)
+
+    whenButton(Buttons.BACK) {
+        pressed {
+            DrivetrainSubsystem.machine(DRIVE_MACHINE).setState(DriveStates.DRIVE_REDUCED)
+            ShooterSubsystem.machine(SHOOTER_MACHINE).setState(ShooterStates.SHOOT_REDUCED)
+        }
+    }
+
+    whenButton(Buttons.START) {
+        pressed {
+            DrivetrainSubsystem.machine(DRIVE_MACHINE).setState(DriveStates.DRIVE)
+            ShooterSubsystem.machine(SHOOTER_MACHINE).setState(ShooterStates.SHOOT)
+        }
+    }
+
     whenButton(Buttons.B) {
         pressed {
             ShooterSubsystem.machine(KICKER_MACHINE).setState(KickerStates.KICK)
@@ -27,7 +43,7 @@ val Gamepad = HumanControls.f310(0) {
         }
     }
 
-    whenButton(Buttons.LEFT_STICK) {
+    whenButton(Buttons.LEFT_BUMPER) {
         pressed {
             ShooterSubsystem.machine(SHOOTER_MACHINE).setState(ShooterStates.INTAKE)
         }
@@ -40,10 +56,12 @@ val Gamepad = HumanControls.f310(0) {
     whenButton(Buttons.RIGHT_STICK) {
         pressed {
             ArmSubsystem.machine(ARM_MACHINE).setState(ArmStates.MOVE)
+            DrivetrainSubsystem.machine(DRIVE_MACHINE).setState(DriveStates.LOCKOUT)
         }
 
         released {
             ArmSubsystem.machine(ARM_MACHINE).setState(ArmStates.LOCK)
+            DrivetrainSubsystem.machine(DRIVE_MACHINE).back()
         }
     }
 }

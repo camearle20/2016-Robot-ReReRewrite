@@ -56,7 +56,7 @@ val ShooterSubsystem: Subsystem = buildSubsystem {
 
         state(ShooterStates.SHOOT) {
             action {
-                wheels.set(Gamepad.readAxis { RIGHT_TRIGGER })
+                wheels.set(Gamepad.readAxis { RIGHT_TRIGGER } * Constants.ShooterParameters.SHOOT_FAST_REDUCTION)
             }
         }
 
